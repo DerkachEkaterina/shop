@@ -1,0 +1,8 @@
+package com.derkachekaterina.shop.orders;
+
+public enum OrderStatus {
+    NEW,
+    CANCELED,
+    PERFORMED,
+    FINISHED
+}

@@ -1,0 +1,237 @@
+{
+  "components": {
+    "schemas": {
+      "Cake": {
+        "required": [
+          "calories",
+          "image",
+          "name",
+          "price",
+          "weight"
+        ],
+        "type": "object",
+        "properties": {
+          "c": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "d": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "integer",
+            "description": "ID",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name"
+          },
+          "calories": {
+            "type": "number",
+            "description": "Calories"
+          },
+          "image": {
+            "type": "string",
+            "description": "Image"
+          },
+          "price": {
+            "type": "number",
+            "description": "Price"
+          },
+          "weight": {
+            "type": "number",
+            "description": "Weight"
+          }
+        },
+        "description": "Short info about cakes"
+      },
+      "Cakes": {
+        "required": [
+          "cake_list"
+        ],
+        "type": "object",
+        "properties": {
+          "cake_list": {
+            "type": "array",
+            "description": "Name",
+            "items": {
+              "$ref": "#/components/schemas/Cake"
+            }
+          }
+        }
+      },
+      "CakeFullInf": {
+        "required": [
+          "calories",
+          "compositions",
+          "image",
+          "name",
+          "price",
+          "storageConditions",
+          "weight"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "id",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name"
+          },
+          "calories": {
+            "type": "number",
+            "description": "Calories of cake"
+          },
+          "image": {
+            "type": "string",
+            "description": "Relative url of cake image"
+          },
+          "price": {
+            "type": "number",
+            "description": "Price of cake"
+          },
+          "weight": {
+            "type": "number",
+            "description": "Cake weight"
+          },
+          "compositions": {
+            "type": "string",
+            "description": "Cake weight"
+          },
+          "storageConditions": {
+            "type": "string",
+            "description": "Cake weight"
+          }
+        },
+        "description": "Full info about cakes"
+      }
+    }
+  },
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/cakes": {
+      "get": {
+        "tags": [
+          "cake-controller"
+        ],
+        "operationId": "cakes",
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cakes"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "cake-controller"
+        ],
+        "operationId": "createCake",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cake"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cake"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cake/{id}": {
+      "get": {
+        "tags": [
+          "cake-controller"
+        ],
+        "operationId": "getCakeById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CakeFullInf"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ]
+}
