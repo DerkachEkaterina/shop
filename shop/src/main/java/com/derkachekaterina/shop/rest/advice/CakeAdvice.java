@@ -15,4 +15,5 @@ public class CakeAdvice {
     public String cakeNotFound(){
         return "Stop eat";
     }
+
 }

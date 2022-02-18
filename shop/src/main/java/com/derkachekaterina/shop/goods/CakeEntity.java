@@ -1,9 +1,11 @@
 package com.derkachekaterina.shop.goods;
 
+
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.swing.plaf.nimbus.State;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -33,6 +35,8 @@ public class CakeEntity {
 
     private String storageConditions;
 
+    private State state;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,4 +49,5 @@ public class CakeEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
