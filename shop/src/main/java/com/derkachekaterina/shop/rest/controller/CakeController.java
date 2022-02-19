@@ -1,10 +1,10 @@
 package com.derkachekaterina.shop.rest.controller;
 
-import com.derkachekaterina.shop.dto.Cake;
-import com.derkachekaterina.shop.dto.CakeFullInf;
-import com.derkachekaterina.shop.dto.Cakes;
 import com.derkachekaterina.shop.exception.CakeNotFoundException;
 import com.derkachekaterina.shop.goods.CakesService;
+import com.derkachekaterina.shop.rest.dto.cake.Cake;
+import com.derkachekaterina.shop.rest.dto.cake.CakeFullInf;
+import com.derkachekaterina.shop.rest.dto.cake.Cakes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

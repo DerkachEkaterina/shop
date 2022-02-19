@@ -14,7 +14,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "ORDERINFO")
+@Table(name = "ORDER")
 public class OrderEntity {
     @Setter(AccessLevel.NONE)
     private @Id

@@ -1,9 +1,10 @@
 package com.derkachekaterina.shop.goods;
 
-import com.derkachekaterina.shop.dto.Cake;
-import com.derkachekaterina.shop.dto.CakeFullInf;
-import com.derkachekaterina.shop.dto.Cakes;
+
 import com.derkachekaterina.shop.exception.CakeNotFoundException;
+import com.derkachekaterina.shop.rest.dto.cake.Cake;
+import com.derkachekaterina.shop.rest.dto.cake.CakeFullInf;
+import com.derkachekaterina.shop.rest.dto.cake.Cakes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class CakesServiceImpl implements CakesService {
+class CakesServiceImpl implements CakesService {
 
     private final CakeRepository cakeRepository;
 
@@ -55,5 +56,20 @@ public class CakesServiceImpl implements CakesService {
                     return cake;
                 })
                 .orElseThrow(() -> new CakeNotFoundException("No such cake"));
+    }
+
+    @Override
+    public CakeEntity getCakeEntity(Long id) {
+        return null;
+    }
+
+    @Override
+    public Long addCake(CakeFullInf cake) {
+        return null;
+    }
+
+    @Override
+    public void deleteCake(Long id) {
+
     }
 }
