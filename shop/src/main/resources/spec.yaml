@@ -8,7 +8,7 @@ servers:
 paths:
   /cake:
     get:
-      description: return list of all available cakes
+      description: Returns list of available cakes
       responses:
         200:
           description: ok
@@ -28,34 +28,38 @@ components:
         cake_list:
           type: array
           items:
-            $ref: '#/components/schemas/cake'
+              $ref: '#/components/schemas/cake'
 
     cake:
       type: object
-      description: Short info about cakes
+      description: Cake's short data
       required:
-        - id
         - name
-        - calories
+        - caloties
         - image
         - price
         - weight
       properties:
         id:
-          type: number
-          description: Id of object
+          type: integer
+          description: id of the cake
         name:
           type: string
-          description: Name of object
+          description: Name of the cake
         calories:
           type: number
-          description: Calories of cake
+          description: Calories in cake
         image:
           type: string
-          description: Relative url of image
+          description: Url of cake's image
         price:
           type: number
-          description: Price of cake
+          description: Price of the cake
         weight:
           type: number
-          description: Weight of cake
+          description: Weight of the cake
+
+
+
+
+

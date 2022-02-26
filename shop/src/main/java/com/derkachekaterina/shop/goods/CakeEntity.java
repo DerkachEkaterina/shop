@@ -1,12 +1,12 @@
 package com.derkachekaterina.shop.goods;
 
-
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
+
 
 @Entity
 @Getter
@@ -34,7 +34,9 @@ public class CakeEntity {
 
     private String storageConditions;
 
-    private State state;
+    private String shelfLife;
+
+    private AvailabilityOfCake availabilityOfCake;
 
     @Override
     public boolean equals(Object o) {
@@ -48,5 +50,4 @@ public class CakeEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }

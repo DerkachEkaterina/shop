@@ -1,8 +1,5 @@
 package com.derkachekaterina.shop.orders;
 
 public enum OrderStatus {
-    NEW,
-    CANCELED,
-    PERFORMED,
-    FINISHED
+    WAITING_PAYMENT, CREATED, DELIVERING, CANCELED, COMPLETED, REJECTED, MAKING
 }

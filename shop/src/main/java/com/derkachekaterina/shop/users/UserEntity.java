@@ -1,5 +1,6 @@
 package com.derkachekaterina.shop.users;
 
+
 import com.derkachekaterina.shop.orders.OrderEntity;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -16,7 +17,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "USER")
+@Table(name = "USERINFO")
 public class UserEntity {
     @Setter(AccessLevel.NONE)
     private @Id

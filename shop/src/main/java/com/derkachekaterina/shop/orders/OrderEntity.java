@@ -14,7 +14,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "ORDER")
+@Table(name = "ORDERINFO")
 public class OrderEntity {
     @Setter(AccessLevel.NONE)
     private @Id
@@ -32,20 +32,19 @@ public class OrderEntity {
     private List<PurchaseEntity> purchases;
 
     @Setter(AccessLevel.PROTECTED)
-    private Delivery delivery;
+    private DeliveryMethod deliveryMethod;
 
     @Setter(AccessLevel.PROTECTED)
-    private OrderStatus status;
+    private OrderStatus orderStatus;
 
     @Setter(AccessLevel.PROTECTED)
-    private Payment payment;
-
-
-    @Setter(AccessLevel.PROTECTED)
-    private String deliveryAddress;
+    private PaymentMethod paymentMethod;
 
     @Setter(AccessLevel.PROTECTED)
-    private LocalDateTime deliveryTime;
+    private String address;
+
+    @Setter(AccessLevel.PROTECTED)
+    private LocalDateTime time;
 
 
     @Override

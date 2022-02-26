@@ -6,17 +6,17 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080",
+      "url": "http://localhost:9001",
       "description": "Generated server url"
     }
   ],
   "paths": {
-    "/addOrder": {
+    "/add-order": {
       "post": {
         "tags": [
           "user-controller"
         ],
-        "operationId": "createOrder",
+        "operationId": "getOrCreateOrder",
         "requestBody": {
           "content": {
             "application/json": {
@@ -29,14 +29,7 @@
         },
         "responses": {
           "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "201": {
             "description": "Created"
@@ -44,7 +37,7 @@
         }
       }
     },
-    "/addCake": {
+    "/add-cake": {
       "post": {
         "tags": [
           "user-controller"
@@ -54,7 +47,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CakeFullInf"
+                "$ref": "#/components/schemas/CakeMoreInfo"
               }
             }
           },
@@ -62,14 +55,7 @@
         },
         "responses": {
           "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "200": {
             "description": "OK",
@@ -84,7 +70,7 @@
         }
       }
     },
-    "/cakes": {
+    "/get-all-cakes": {
       "get": {
         "tags": [
           "user-controller"
@@ -92,14 +78,7 @@
         "operationId": "cakes",
         "responses": {
           "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "200": {
             "description": "OK",
@@ -133,21 +112,14 @@
         ],
         "responses": {
           "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CakeFullInf"
+                  "$ref": "#/components/schemas/CakeMoreInfo"
                 }
               }
             }
@@ -177,8 +149,8 @@
             "type": "string",
             "description": "delivery need",
             "enum": [
-              "NEED",
-              "NO"
+              "POST",
+              "COURIER"
             ]
           },
           "deliveryAddress": {
@@ -194,18 +166,21 @@
             "type": "string",
             "description": "payment status",
             "enum": [
-              "ONLINE",
-              "MONEY"
+              "CARD",
+              "CASH"
             ]
           },
           "orderStatus": {
             "type": "string",
             "description": "order status",
             "enum": [
-              "NEW",
+              "WAITING_PAYMENT",
+              "CREATED",
+              "DELIVERING",
               "CANCELED",
-              "PERFORMED",
-              "FINISHED"
+              "COMPLETED",
+              "REJECTED",
+              "MAKING"
             ]
           },
           "purchases": {
@@ -216,12 +191,12 @@
             }
           }
         },
-        "description": "Info about order"
+        "description": "Order's data"
       },
       "Purchase": {
         "required": [
           "id",
-          "number"
+          "num"
         ],
         "type": "object",
         "properties": {
@@ -229,7 +204,7 @@
             "type": "integer",
             "format": "int64"
           },
-          "number": {
+          "num": {
             "type": "integer",
             "format": "int32"
           }
@@ -243,64 +218,69 @@
         ],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "id of the cake",
+            "format": "int64"
+          },
           "number": {
             "type": "string",
-            "description": "number"
+            "description": "User's phone number"
           },
           "name": {
             "type": "string",
-            "description": "name"
+            "description": "User's name"
           }
         },
-        "description": "Info about purchase"
+        "description": "User's data"
       },
-      "CakeFullInf": {
+      "CakeMoreInfo": {
         "required": [
           "calories",
-          "compositions",
+          "composition",
           "image",
           "name",
           "price",
-          "storageConditions",
+          "shelf-life",
           "weight"
         ],
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
-            "description": "id",
+            "description": "id of the cake",
             "format": "int64"
           },
           "name": {
             "type": "string",
-            "description": "Name"
+            "description": "Name of the cake"
           },
           "calories": {
             "type": "number",
-            "description": "Calories of cake"
+            "description": "Calories in cake"
           },
           "image": {
             "type": "string",
-            "description": "Relative url of cake image"
+            "description": "Url of cake's image"
           },
           "price": {
             "type": "number",
-            "description": "Price of cake"
+            "description": "Price of the cake"
           },
           "weight": {
             "type": "number",
-            "description": "Cake weight"
+            "description": "Weight of the cake"
           },
-          "compositions": {
+          "composition": {
             "type": "string",
-            "description": "Cake compositions"
+            "description": "Composition of the cake"
           },
-          "storageConditions": {
+          "shelf-life": {
             "type": "string",
-            "description": "Cake storage conditions"
+            "description": "Product shelf life"
           }
         },
-        "description": "Full info about cakes"
+        "description": "Full info about cake"
       },
       "Cake": {
         "required": [
@@ -314,31 +294,31 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "id",
+            "description": "id of the cake",
             "format": "int64"
           },
           "name": {
             "type": "string",
-            "description": "Name"
+            "description": "Name of the cake"
           },
           "calories": {
             "type": "number",
-            "description": "Calories of cake"
+            "description": "Calories in cake"
           },
           "image": {
             "type": "string",
-            "description": "Relative url of cake image"
+            "description": "Url of cake's image"
           },
           "price": {
             "type": "number",
-            "description": "Price of cake"
+            "description": "Price of the cake"
           },
           "weight": {
             "type": "number",
-            "description": "Cake weight"
+            "description": "Weight of the cake"
           }
         },
-        "description": "Short info about cakes"
+        "description": "Cake's short data"
       },
       "Cakes": {
         "required": [
@@ -348,7 +328,7 @@
         "properties": {
           "cake_list": {
             "type": "array",
-            "description": "Name",
+            "description": "Name of the cake",
             "items": {
               "$ref": "#/components/schemas/Cake"
             }
