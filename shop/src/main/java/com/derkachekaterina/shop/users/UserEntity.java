@@ -12,19 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Entity//Указывает, что данный бин (класс) является сущностью.
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
-@Table(name = "USERINFO")
+@RequiredArgsConstructor//генерирует конструктор, принимающий значения для каждого final поля или поля с аннотацией @NonNull
+@Table(name = "USERINFO")//указывает на имя таблицы, которая будет отображаться в этой сущности.
 public class UserEntity {
     @Setter(AccessLevel.NONE)
-    private @Id
+    private @Id//id колонки
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
     @Setter(AccessLevel.PROTECTED)
-    @Column(name = "number",nullable = false,unique = true)
+    @Column(name = "number",nullable = false,unique = true)//указывает на имя колонки, которая отображается в свойство сущности.
     @NaturalId(mutable = true)
     private String number;
 

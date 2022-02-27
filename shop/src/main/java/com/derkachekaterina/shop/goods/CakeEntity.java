@@ -8,18 +8,19 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 
-@Entity
+@Entity //Указывает, что данный бин (класс) является сущностью.
 @Getter
 @Setter(AccessLevel.PROTECTED)
 @ToString
-@RequiredArgsConstructor
-@Table(name = "CAKE")
+@RequiredArgsConstructor//генерирует конструктор, принимающий значения для каждого final поля или поля с аннотацией @NonNull
+@Table(name = "CAKE")//указывает на имя таблицы, которая будет отображаться в этой сущности.
 public class CakeEntity {
 
     @Setter(AccessLevel.NONE)
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+    //id колонки
 
-    @Column(name = "name")
+    @Column(name = "name")//указывает на имя колонки, которая отображается в свойство сущности.
     private String name;
 
     private BigDecimal calories;

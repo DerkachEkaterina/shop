@@ -9,21 +9,22 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Entity// Указывает, что данный бин (класс) является сущностью.
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
-@Table(name = "ORDERINFO")
+@RequiredArgsConstructor//генерирует конструктор, принимающий значения для каждого final поля или поля с аннотацией @NonNull
+@Table(name = "ORDERINFO")//указывает на имя таблицы, которая будет отображаться в этой сущности.
 public class OrderEntity {
     @Setter(AccessLevel.NONE)
-    private @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+    private @Id//id колонки
+    @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;//указывает, что данное свойство будет
+    // создаваться согласно указанной стратегии.
 
     @Setter(AccessLevel.PROTECTED)
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false)//создать столбец
     private UserEntity user;
 
     @Setter(AccessLevel.PROTECTED)

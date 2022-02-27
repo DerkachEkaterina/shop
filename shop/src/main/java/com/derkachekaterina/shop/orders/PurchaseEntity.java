@@ -7,21 +7,21 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity//Указывает, что данный бин (класс) является сущностью.
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
-@Table(name = "PURCHASE")
+@RequiredArgsConstructor//генерирует конструктор, принимающий значения для каждого final поля или поля с аннотацией @NonNull
+@Table(name = "PURCHASE")//указывает на имя таблицы, которая будет отображаться в этой сущности.
 public class PurchaseEntity {
     @Setter(AccessLevel.NONE)
-    private @Id
+    private @Id//id колонки
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
     @Setter(AccessLevel.PROTECTED)
     @ManyToOne (fetch = FetchType.LAZY)
     @ToString.Exclude
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false)//создать столбец
     private CakeEntity cake;
 
     @Setter(AccessLevel.PROTECTED)
